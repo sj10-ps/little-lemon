@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.sp
@@ -155,6 +156,8 @@ fun buttons(){
                 }
             }
         }
+
+
         menuitemsdisplay(items = items,choice=choice,search=searchitem.text)
     }
 
@@ -175,7 +178,7 @@ fun menuitemsdisplay(items: List<MenuItemsRoom>, choice: String = "all", search:
     }else{
         filteredItems.filter {
             item->
-            item.title.startsWith(search.lowercase())
+            item.title.contains(search, ignoreCase = true)
         }
     }
     LazyColumn(modifier = Modifier.padding(8.dp)) {
