@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
@@ -30,22 +32,27 @@ fun profile(navController: NavHostController) {
     val email = sharedPreferences.getString("email", "") ?: ""
 
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    Column(verticalArrangement = Arrangement.Center, modifier = Modifier.padding(5.dp)) {
+        Row(
+            Modifier
 
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Logo",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp)
-                .padding(bottom = 24.dp)
-        )
+                .fillMaxWidth()) {
+            Image(painter = painterResource(id = R.drawable.logo)
+                , contentDescription ="",
+                Modifier
+                    .fillMaxWidth(0.85f)
+                    .width(179.dp)
+                    .height(56.dp)
+                    .padding(top = 3.dp)
+
+            )
+            IconButton(onClick = { navController.navigate(Home.Route) }) {
+                Image(imageVector = Icons.Default.Person, contentDescription = "",
+                    Modifier.height(60.dp)
+                )
+            }
+        }
+
 
 
         Text(
@@ -90,13 +97,14 @@ fun profile(navController: NavHostController) {
 
         Button(
             onClick = {
-                navController.navigate(Home.Route)
+                navController.navigate(OnBoarding.Route)
             },
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(backgroundColor = yellow)
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
         ) {
-            Text("Back to Home")
+            Text("Logout")
         }
+
     }
 }
 
